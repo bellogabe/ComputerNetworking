@@ -7,11 +7,11 @@
 def welcome_assignment_answers(question):
    # The student doesn't have to follow the skeleton for this assignment.
    # Another way to implement it is using "case" statements similar to C.
-   if question == "Are encoding and encryption the same? - Yes/No":
+    if question == "Are encoding and encryption the same? - Yes/No":
        answer = "No"
-   elif question == "Is it possible to decrypt a message without a key? - Yes/No":
+    elif question == "Is it possible to decrypt a message without a key? - Yes/No":
        answer = "Yes"
-   elif question == "Is it possible to decode a message without a key? - Yes/No":
+    elif question == "Is it possible to decode a message without a key? - Yes/No":
        answer = "Yes"
     elif question == "Is it possible to decode a message without a key? - Yes/No":
        answer = "Yes"
@@ -25,7 +25,7 @@ def welcome_assignment_answers(question):
        answer = 2
     elif question == "What layer of the TCP/IP model the protocol TCP belongs to? - The answer should be a numeric number":
        answer = 4
-   return (answer)
+    return (answer)
 
 
 # Complete all the questions.
