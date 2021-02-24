@@ -29,29 +29,29 @@ def smtp_client(port=1025, mailserver="127.0.0.1"):
 
     # Send MAIL FROM command and print server response.
     # Fill in start
-    print("Sending MAIL FROM command.")
+#    print("Sending MAIL FROM command.")
     mailFromCommand = bytes("MAIL FROM: <bellogabe@gmail.com>\r\n", "utf-8")
     clientSocket.send(mailFromCommand)
     recv1 = clientSocket.recv(1024)
-    print(recv1)
+#    print(recv1)
 #    if recv1[:3] != '250':
 #        print('250 reply not received from server.')
     # Fill in end
 
     # Send RCPT TO command and print server response.
     # Fill in start
-    print("Sneding RCPT TO command.")
+#    print("Sneding RCPT TO command.")
     rcptToCommand = bytes("RCPT TO: <bellogabe@gmail.com>\r\n", "utf-8")
     clientSocket.send(rcptToCommand)
     recv1 = clientSocket.recv(1024)
-    print(recv1)
+#    print(recv1)
 #    if recv1[:3] != '250':
 #        print('250 reply not received from server.')
     # Fill in end
 
     # Send DATA command and print server response.
     # Fill in start
-    print("Sneding DATA command.")
+#    print("Sneding DATA command.")
     dataCommand = bytes("DATA\r\n", "utf-8")
     clientSocket.send(dataCommand)
     recv1 = clientSocket.recv(1024)
@@ -60,7 +60,7 @@ def smtp_client(port=1025, mailserver="127.0.0.1"):
 
     # Send message data. Message ends with a single period.
     # Fill in start
-    print("Sending message data.")
+#    print("Sending message data.")
     msg = bytes("SUBJECT: SMTP Test\nIs this thing on\n.\r\n", "utf-8")
     clientSocket.send(msg)
 #    recv1 = clientSocket.recv(1024)
@@ -71,13 +71,13 @@ def smtp_client(port=1025, mailserver="127.0.0.1"):
 
     # Send QUIT command and get server response.
     # Fill in start
-    print("Sending Quit")
+#    print("Sending Quit")
     quitCommand = bytes("QUIT\r\n", "utf-8")
     clientSocket.send(quitCommand)
     recv1 = clientSocket.recv(1024)
-    print(recv1)
-    if recv1[:3] != '221':
-        print('221 reply not received from server.')
+#    print(recv1)
+#    if recv1[:3] != '221':
+#        print('221 reply not received from server.')
     # Fill in end
 
 
