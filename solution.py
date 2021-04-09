@@ -109,8 +109,8 @@ def ping(host, timeout=1):
     # timeout=1 means: If one second goes by without a reply from the server,
     # the client assumes that either the client's ping or the server's pong is lost
     dest = gethostbyname(host)
-    print("Pinging " + dest + " using Python:")
-    print("")
+    #print("Pinging " + dest + " using Python:")
+    #print("")
     # Calculate vars values and return them; delay is the RTT value!!!***
 
     packet_min = float(0)
@@ -122,7 +122,7 @@ def ping(host, timeout=1):
     # Send ping requests to a server separated by approximately one second
     for i in range(0,4):
         delay = doOnePing(dest, timeout)
-        print(delay)
+        #print(delay)
         
         if i == 0:
             packet_min = delay
