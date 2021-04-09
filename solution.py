@@ -121,7 +121,7 @@ def ping(host, timeout=1):
         delay = doOnePing(dest, timeout)
         total_delay = 0
         
-        if i = 0:
+        if i == 0:
             packet_min = delay
         elif delay < packet_min:
             packet_min = delay
