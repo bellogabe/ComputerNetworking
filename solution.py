@@ -108,14 +108,36 @@ def ping(host, timeout=1):
     dest = gethostbyname(host)
     #print("Pinging " + dest + " using Python:")
     #print("")
-    # Calculate vars values and return them
-    #vars = [float(round(packet_min, 2)), float(round(packet_avg, 2)), float(round(packet_max, 2)),float(round(pstdev(stdev_var), 2))]
-    vars = [float(round(2.39, 2)), float(round(3.67, 2)), float(round(5.5, 2)),float(round(1.18, 2))]
+    # Calculate vars values and return them; delay is the RTT value!!!***
+
+    packet_min = 0
+    packet_avg = 0
+    packet_max = 0
+    stdev_var = []
+
+    
     # Send ping requests to a server separated by approximately one second
     for i in range(0,4):
         delay = doOnePing(dest, timeout)
+        total_delay = 0
+        
+        if i = 0:
+            packet_min = delay
+        elif delay < packet_min:
+            packet_min = delay
+        elif delay > packet_max:
+            packet_max = delay
+
+        total_delay = total_delay + delay
+        stdev_var.append(delay)
+
         #print(delay)
         time.sleep(1)  # one second
+
+    #calculate avg and stdev
+    packet_avg = (total_delay / 4)
+    
+    vars = [float(round(packet_min, 2)), float(round(packet_avg, 2)), float(round(packet_max, 2)),float(round(pstdev(stdev_var), 2))]
 
     return vars
 
