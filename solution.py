@@ -126,7 +126,7 @@ def ping(host, timeout=1):
             packet_min = delay
         elif delay < packet_min:
             packet_min = delay
-        elif delay > packet_max:
+        if delay > packet_max:
             packet_max = delay
 
         total_delay = total_delay + delay
