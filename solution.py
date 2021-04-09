@@ -115,15 +115,15 @@ def ping(host, timeout=1):
     packet_avg = 0
     packet_max = 0
     stdev_var = []
-
+    total_delay = 0
     
     # Send ping requests to a server separated by approximately one second
     for i in range(0,4):
         delay = doOnePing(dest, timeout)
-        total_delay = 0
         
         if i == 0:
             packet_min = delay
+            packet_max = delay
         elif delay < packet_min:
             packet_min = delay
         if delay > packet_max:
