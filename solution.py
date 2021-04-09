@@ -136,7 +136,7 @@ def ping(host, timeout=1):
         time.sleep(1)  # one second
 
     #calculate avg and stdev
-    packet_avg = (total_delay / len(stdev_arr))
+    packet_avg = (total_delay / len(stdev_var))
     
     vars = [float(round(packet_min, 2)), float(round(packet_avg, 2)), float(round(packet_max, 2)),float(round(statistics.pstdev(stdev_var), 2))]
 
