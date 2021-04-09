@@ -43,7 +43,8 @@ def receiveOnePing(mySocket, ID, timeout, destAddr):
         whatReady = select.select([mySocket], [], [], timeLeft)
         howLongInSelect = (time.time() - startedSelect)
         if whatReady[0] == []:  # Timeout
-            return "Request timed out."
+            #return "Request timed out."
+            return 0
 
         timeReceived = time.time()
         recPacket, addr = mySocket.recvfrom(1024)
@@ -61,7 +62,8 @@ def receiveOnePing(mySocket, ID, timeout, destAddr):
         # Fill in end
         timeLeft = timeLeft - howLongInSelect
         if timeLeft <= 0:
-            return "Request timed out."
+            #return "Request timed out."
+            return 0
 
 
 def sendOnePing(mySocket, destAddr, ID):
@@ -107,19 +109,20 @@ def ping(host, timeout=1):
     # timeout=1 means: If one second goes by without a reply from the server,
     # the client assumes that either the client's ping or the server's pong is lost
     dest = gethostbyname(host)
-    #print("Pinging " + dest + " using Python:")
-    #print("")
+    print("Pinging " + dest + " using Python:")
+    print("")
     # Calculate vars values and return them; delay is the RTT value!!!***
 
-    packet_min = 0
-    packet_avg = 0
-    packet_max = 0
+    packet_min = float(0)
+    packet_avg = float(0.00)
+    packet_max = float(0)
     stdev_var = []
-    total_delay = 0
+    total_delay = float(0.00)
     
     # Send ping requests to a server separated by approximately one second
     for i in range(0,4):
         delay = doOnePing(dest, timeout)
+        print(delay)
         
         if i == 0:
             packet_min = delay
@@ -129,7 +132,7 @@ def ping(host, timeout=1):
         if delay > packet_max:
             packet_max = delay
 
-        total_delay = total_delay + delay
+        #total_delay = total_delay + float(delay)
         stdev_var.append(delay)
 
         #print(delay)
@@ -139,12 +142,13 @@ def ping(host, timeout=1):
     packet_avg = (total_delay / len(stdev_var))
     
     vars = [float(round(packet_min, 2)), float(round(packet_avg, 2)), float(round(packet_max, 2)),float(round(statistics.pstdev(stdev_var), 2))]
-
+    print(vars)
     return vars
 
 if __name__ == '__main__':
     #ping("google.co.il")
     ping("127.0.0.1")
+    #ping("google.com")
     
 
 
