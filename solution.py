@@ -121,7 +121,7 @@ def ping(host, timeout=1):
     
     # Send ping requests to a server separated by approximately one second
     for i in range(0,4):
-        delay = doOnePing(dest, timeout)
+        delay = 1000*(doOnePing(dest, timeout))
         #print(delay)
         
         if i == 0:
@@ -132,7 +132,7 @@ def ping(host, timeout=1):
         if delay > packet_max:
             packet_max = delay
 
-        #total_delay = total_delay + float(delay)
+        total_delay = total_delay + delay
         stdev_var.append(delay)
 
         #print(delay)
@@ -140,6 +140,7 @@ def ping(host, timeout=1):
 
     #calculate avg and stdev
     packet_avg = (total_delay / len(stdev_var))
+    #print("total delay: ", total_delay)
     
     vars = [float(round(packet_min, 2)), float(round(packet_avg, 2)), float(round(packet_max, 2)),float(round(statistics.pstdev(stdev_var), 2))]
     #print(vars)
@@ -147,8 +148,9 @@ def ping(host, timeout=1):
 
 if __name__ == '__main__':
     #ping("google.co.il")
-    ping("127.0.0.1")
+    #ping("127.0.0.1")
     #ping("google.com")
+    ping("nonicbar.com")
     
 
 
